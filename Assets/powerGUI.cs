@@ -5,7 +5,6 @@ public class powerGUI : MonoBehaviour {
 	public Texture powerTexture;
 
 	void Update() {
-		Debug.Log (flashlight.power);
 	}
 	
 	void OnGUI () {
