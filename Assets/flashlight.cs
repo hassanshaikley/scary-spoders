@@ -14,17 +14,20 @@ public class flashlight : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (GetComponent<Light> ().enabled == true) {
-			power = power - .1;
+			power = power - .5;
 		} else {
-			if (power <= 99.9) {
-				power = power + .1;
+			if (power <= 99.5) {
+				power = power + .5;
 			}
+		}
+		if (power <= 0) {
+			GetComponent<Light> ().enabled = false; 
 		}
 		if (Input.GetMouseButtonDown (0)) {
 			Debug.Log ("hi");
 			if (GetComponent<Light> ().enabled == true) {
 				GetComponent<Light> ().enabled = false; 
-			} else {
+			} else if ( power > 0){
 				GetComponent<Light> ().enabled = true; 
 			}
 		}
