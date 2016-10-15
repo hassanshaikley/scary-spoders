@@ -4,7 +4,7 @@ using System.Collections;
 public class flashlight : MonoBehaviour {
 
 //	public Light flashlight;
-	public double power = 100.0;
+	public static double power = 100.0;
 
 	// Use this for initialization
 	void Start () {
