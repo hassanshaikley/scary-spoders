@@ -5,7 +5,8 @@ public class PlayerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		RenderSettings.ambientIntensity = 0.0f;
+
 	}
 
 	float timeLeft = 60.0f;
