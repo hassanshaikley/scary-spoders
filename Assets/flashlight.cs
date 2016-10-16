@@ -24,7 +24,6 @@ public class flashlight : MonoBehaviour {
 			GetComponent<Light> ().enabled = false; 
 		}
 		if (Input.GetMouseButtonDown (0)) {
-			Debug.Log ("hi");
 			if (GetComponent<Light> ().enabled == true) {
 				GetComponent<Light> ().enabled = false; 
 			} else if ( power > 0){
