@@ -7,10 +7,18 @@ public class PlayerScript : MonoBehaviour {
 	void Start () {
 	
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	float timeLeft = 60.0f;
+
+	void Update()
+	{
+		timeLeft -= Time.deltaTime;
+		Debug.Log ("Time left " + timeLeft);
+		if(timeLeft < 0)
+		{
+			Debug.Log ("Try");
+			Time.timeScale = 0;
+		}
 	}
 	void OnCollisionEnter (Collision col)
 	{			
