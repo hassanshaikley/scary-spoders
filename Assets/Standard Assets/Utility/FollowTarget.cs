@@ -36,6 +36,7 @@ namespace UnityStandardAssets.Utility
 			{
 //				Destroy(col.gameObject);
 				Time.timeScale = 0;
+				RenderSettings.ambientIntensity = 0.4f;
 			}
 		}
 

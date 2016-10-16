@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour {
 		{
 			Debug.Log ("Try");
 			Time.timeScale = 0;
+			RenderSettings.ambientIntensity = 3.2f;
 		}
 	}
 	void OnCollisionEnter (Collision col)
@@ -28,6 +29,7 @@ public class PlayerScript : MonoBehaviour {
 			
 			//				Destroy(col.gameObject);
 			Time.timeScale = 0;
+			RenderSettings.ambientIntensity = 0.4f;
 		}
 	}
 }
