@@ -24,18 +24,19 @@ public class spoder : MonoBehaviour {
 		targetTransform = target.transform;
 
 		InvokeRepeating("checkForPlayer", 2.0f, 1.0f);
-	
+		InvokeRepeating("playerInLOS", 2.0f, 10.0f);
+
+
 	}
 
 	void OnTriggerEnter (Collider trig) {
-		Debug.Log ("spTriggereD " + trig.gameObject.tag);
+//		Debug.Log ("spTriggereD " + trig.gameObject.tag);
 
 		//already chasing player llol
 		if (triggered) {
 			return;
 		}
 		if (trig.gameObject.tag == "WayPoint") {
-			Debug.Log (target == trig.gameObject);
 			if (target == trig.gameObject){
 				
 				target = target.GetComponent<WayPoint>().nextWayPoint ();
@@ -57,9 +58,6 @@ public class spoder : MonoBehaviour {
 //			Debug.Log("Hit Waypoint");
 //		}
 	}
-//	public void nextWayPoint(){
-//		Debug.Log ("Fuckk my liife");
-//	}
 
 	private void Update()
 	{
@@ -73,10 +71,44 @@ public class spoder : MonoBehaviour {
 	}
 
 	void checkForPlayer(){
-		if (Mathf.Abs (playerTransform.position.x - transform.position.x) < 5 && Mathf.Abs (playerTransform.position.y - transform.position.y) < 5) {
-			Debug.Log ("Player is nearby");
-			targetTransform = playerTransform;
-			triggered = true;
+		RaycastHit hit;
+
+		if (Mathf.Abs (playerTransform.position.x - transform.position.x) < 10 && Mathf.Abs (playerTransform.position.y - transform.position.y) < 10) {
+			if (Physics.Linecast (transform.position, playerTransform.position, out hit)) { //&& hit.transform.tag == "Wall"
+				if (hit.transform.tag == "Player") {
+					Debug.Log ("Player is nearby");
+					targetTransform = playerTransform;
+					triggered = true;
+				}
+			}
+		}
+	}
+
+	void playerInLOS(){
+		RaycastHit hit;
+		if (triggered) {
+			if (Physics.Linecast (transform.position, targetTransform.position, out hit)) { //&& hit.transform.tag == "Wall"
+				print ("Raycast hit: " + hit.transform.tag);
+				if (hit.transform.tag == "Player") {
+				
+				
+					GameObject[] gos;
+					gos = GameObject.FindGameObjectsWithTag("WayPoint");
+
+					for (int i = 0; i < gos.Length; i++) {
+						if (Physics.Linecast (transform.position, gos [i].transform.position, out hit)) { //&& hit.transform.tag == "Wall"
+							if (hit.transform.tag == "WayPoint") {
+								Debug.Log ("Yes hit a way point so prusuing that");
+								targetTransform = gos [i].transform;
+								target = gos [i];
+								triggered = false;
+								return;
+							}
+						}
+					}
+				
+				}
+			}
 		}
 	}
 
