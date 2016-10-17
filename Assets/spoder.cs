@@ -7,6 +7,8 @@ public class spoder : MonoBehaviour {
 	public GameObject target;
 	public Transform playerTransform;
 
+	public AudioSource aggro;
+
 	bool triggered;
 	Transform targetTransform;
 
@@ -37,8 +39,8 @@ public class spoder : MonoBehaviour {
 			return;
 		}
 		if (trig.gameObject.tag == "WayPoint") {
+			
 			if (target == trig.gameObject){
-				
 				target = target.GetComponent<WayPoint>().nextWayPoint ();
 				targetTransform = target.transform;
 			}
@@ -76,6 +78,8 @@ public class spoder : MonoBehaviour {
 		if (Mathf.Abs (playerTransform.position.x - transform.position.x) < 10 && Mathf.Abs (playerTransform.position.y - transform.position.y) < 10) {
 			if (Physics.Linecast (transform.position, playerTransform.position, out hit)) { //&& hit.transform.tag == "Wall"
 				if (hit.transform.tag == "Player") {
+					aggro.Play ();
+
 					Debug.Log ("Player is nearby");
 					targetTransform = playerTransform;
 					triggered = true;
