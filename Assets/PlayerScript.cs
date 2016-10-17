@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour {
 
 	}
 
-	float timeLeft = 60.0f;
+	float timeLeft = 120.0f;
 
 	void Update()
 	{

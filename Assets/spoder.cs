@@ -61,7 +61,7 @@ public class spoder : MonoBehaviour {
 //		}
 	}
 
-	private void Update()
+	private void FixedUpdate()
 	{
 
 
@@ -69,7 +69,8 @@ public class spoder : MonoBehaviour {
 //		Quaternion.LookRotation(targetTransform.position - myTransform.position), rotationSpeed*Time.deltaTime);
 
 //		myRigidbody.MovePosition(myTransform.position + myTransform.forward * Time.deltaTime *moveSpeed) ;// += myTransform.forward * moveSpeed * Time.deltaTime;
-		myRigidbody.AddForce((targetTransform.position - myTransform.position) * moveSpeed * Time.smoothDeltaTime);
+//		myRigidbody.AddForce((targetTransform.position - myTransform.position) * moveSpeed * Time.smoothDeltaTime);
+		myRigidbody.velocity = (targetTransform.position - myTransform.position) * moveSpeed * Time.smoothDeltaTime;
 	}
 
 	void checkForPlayer(){
