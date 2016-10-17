@@ -9,8 +9,8 @@ namespace UnityStandardAssets.Utility
         public Transform target;
 //        public Vector3 offset = new Vector3(0f, 7.5f, 0f);
 
-		float moveSpeed = 3.5f;
-		float rotationSpeed = .5f;
+		public float moveSpeed;
+		public float rotationSpeed;
 
 		Transform myTransform; //current transform data of this enemy
 
@@ -20,6 +20,7 @@ namespace UnityStandardAssets.Utility
 		{
 			myTransform = transform; //cache transform data for easy access/preformance
 			myRigidbody = GetComponent<Rigidbody>();
+
 		}
 
 		void Update(){

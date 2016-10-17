@@ -14,7 +14,6 @@ public class PlayerScript : MonoBehaviour {
 	void Update()
 	{
 		timeLeft -= Time.deltaTime;
-		Debug.Log ("Time left " + timeLeft);
 		if(timeLeft < 0)
 		{
 			Debug.Log ("Try");
@@ -28,7 +27,6 @@ public class PlayerScript : MonoBehaviour {
 		if(col.gameObject.tag == "Enemy")
 		{
 			
-			//				Destroy(col.gameObject);
 			Time.timeScale = 0;
 			RenderSettings.ambientIntensity = 0.4f;
 		}
