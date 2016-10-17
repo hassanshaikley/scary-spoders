@@ -22,6 +22,9 @@ public class spoder : MonoBehaviour {
 		myTransform = transform; 
 		myRigidbody = GetComponent<Rigidbody>();
 		targetTransform = target.transform;
+
+		InvokeRepeating("checkForPlayer", 2.0f, 1.0f);
+	
 	}
 
 	void OnTriggerEnter (Collider trig) {
@@ -60,17 +63,21 @@ public class spoder : MonoBehaviour {
 
 	private void Update()
 	{
+
+
+//		myRigidbody.rotation = Quaternion.Slerp(myTransform.rotation,
+//		Quaternion.LookRotation(targetTransform.position - myTransform.position), rotationSpeed*Time.deltaTime);
+
+//		myRigidbody.MovePosition(myTransform.position + myTransform.forward * Time.deltaTime *moveSpeed) ;// += myTransform.forward * moveSpeed * Time.deltaTime;
+		myRigidbody.AddForce((targetTransform.position - myTransform.position) * moveSpeed * Time.smoothDeltaTime);
+	}
+
+	void checkForPlayer(){
 		if (Mathf.Abs (playerTransform.position.x - transform.position.x) < 5 && Mathf.Abs (playerTransform.position.y - transform.position.y) < 5) {
 			Debug.Log ("Player is nearby");
 			targetTransform = playerTransform;
 			triggered = true;
 		}
-
-		myTransform.rotation = Quaternion.Slerp(myTransform.rotation,
-		Quaternion.LookRotation(targetTransform.position - myTransform.position), rotationSpeed*Time.deltaTime);
-
-		myRigidbody.MovePosition(myTransform.position + myTransform.forward * Time.deltaTime *moveSpeed) ;// += myTransform.forward * moveSpeed * Time.deltaTime;
-
 	}
 
 }
