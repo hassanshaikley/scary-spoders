@@ -9,11 +9,5 @@ public Canvas canvas;
 	{
 		SceneManager.LoadScene("GameScene");
 		Time.timeScale = 1;
-
-//			canvas.enabled = false;
-
-
 	}
-
-
 }

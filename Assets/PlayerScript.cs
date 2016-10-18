@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 //using UnityEngine.SceneManagement;
-
+//using UnityEngine;
+//using System.Collections;
+//using UnityEngine.UI;
 public class PlayerScript : MonoBehaviour {
 
 	public Canvas canvas;
@@ -16,6 +18,7 @@ public class PlayerScript : MonoBehaviour {
 	float timeLeft = 120.0f;
 
 
+
 	void Update()
 	{
 		timeLeft -= Time.deltaTime;
@@ -24,9 +27,20 @@ public class PlayerScript : MonoBehaviour {
 			Debug.Log ("Try");
 			Time.timeScale = 0;
 			RenderSettings.ambientIntensity = 3.2f;
+			RenderSettings.ambientLight = Color.blue;
 			canvas.enabled = true;
 
 		}
+//		int minutes = timeLeft / 60; //Divide the guiTime by sixty to get the minutes.
+//		int seconds = timeLeft % 60;//Use the euclidean division for the seconds.
+
+//		timerLabel.text = string.Format ("{0:00} : {1:00}", minutes, seconds);
+
+	}
+	void OnGUI() {
+
+		GUI.Box(new Rect(Screen.width - 50, 10, 50, 20), "" + timeLeft.ToString("0"));
+
 	}
 	void OnCollisionEnter (Collision col)
 	{			
