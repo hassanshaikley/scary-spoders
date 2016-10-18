@@ -26,7 +26,7 @@ public class spoder : MonoBehaviour {
 		targetTransform = target.transform;
 
 		InvokeRepeating("checkForPlayer", 2.0f, 1.0f);
-		InvokeRepeating("playerInLOS", 2.0f, 10.0f);
+		InvokeRepeating("playerInLOS", 2.0f, 3.0f);
 
 
 	}
@@ -73,15 +73,15 @@ public class spoder : MonoBehaviour {
 		myRigidbody.velocity = (targetTransform.position - myTransform.position) * moveSpeed * Time.smoothDeltaTime;
 	}
 
+	// if player in LOS aggros player
 	void checkForPlayer(){
 		RaycastHit hit;
-
 		if (Mathf.Abs (playerTransform.position.x - transform.position.x) < 10 && Mathf.Abs (playerTransform.position.y - transform.position.y) < 10) {
 			if (Physics.Linecast (transform.position, playerTransform.position, out hit)) { //&& hit.transform.tag == "Wall"
+				Debug.Log("checkForPlayer hit: " + hit.transform.tag);
 				if (hit.transform.tag == "Player") {
-					aggro.Play ();
+//					aggro.Play ();
 
-					Debug.Log ("Player is nearby");
 					targetTransform = playerTransform;
 					triggered = true;
 				}
@@ -89,12 +89,18 @@ public class spoder : MonoBehaviour {
 		}
 	}
 
+	//checks if player is in LOS
+	// if already pursuing player
+	// checks if player is in LOS
 	void playerInLOS(){
 		RaycastHit hit;
 		if (triggered) {
-			if (Physics.Linecast (transform.position, targetTransform.position, out hit)) { //&& hit.transform.tag == "Wall"
-				print ("Raycast hit: " + hit.transform.tag);
-				if (hit.transform.tag == "Player") {
+			if (Physics.Linecast (transform.position, playerTransform.position, out hit)) { //&& hit.transform.tag == "Wall"
+				Debug.Log ("playerInLOS Raycast hit: " + hit.transform.tag);
+
+
+				//if player is not in line of sight
+				if (hit.transform.tag != "Player") {
 				
 				
 					GameObject[] gos;
