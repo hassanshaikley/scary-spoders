@@ -47,20 +47,16 @@ public class spoder : MonoBehaviour {
 		};
 	}
 
-	void OnCollisionEnter (Collision col)
-	{			
-		if(col.gameObject.tag == "Player")
-		{
-			//				Destroy(col.gameObject);
-			Time.timeScale = 0;
-			RenderSettings.ambientIntensity = 0.4f;
-		}
-//		if(col.gameObject.tag == "WayPoint")
+//	void OnCollisionEnter (Collision col)
+//	{			
+//		if(col.gameObject.tag == "Player")
 //		{
-//			Debug.Log("Hit Waypoint");
+//			//				Destroy(col.gameObject);
+//			Time.timeScale = 0;
+//			RenderSettings.ambientIntensity = 0.4f;
 //		}
-	}
-
+//	}
+//
 	private void FixedUpdate()
 	{
 
@@ -76,9 +72,8 @@ public class spoder : MonoBehaviour {
 	// if player in LOS aggros player
 	void checkForPlayer(){
 		RaycastHit hit;
-		if (Mathf.Abs (playerTransform.position.x - transform.position.x) < 10 && Mathf.Abs (playerTransform.position.y - transform.position.y) < 10) {
+//		if (Mathf.Abs (playerTransform.position.x - transform.position.x) < 10 && Mathf.Abs (playerTransform.position.y - transform.position.y) < 10) {
 			if (Physics.Linecast (transform.position, playerTransform.position, out hit)) { //&& hit.transform.tag == "Wall"
-				Debug.Log("checkForPlayer hit: " + hit.transform.tag);
 				if (hit.transform.tag == "Player") {
 //					aggro.Play ();
 
@@ -86,7 +81,7 @@ public class spoder : MonoBehaviour {
 					triggered = true;
 				}
 			}
-		}
+//		}
 	}
 
 	//checks if player is in LOS
@@ -96,7 +91,6 @@ public class spoder : MonoBehaviour {
 		RaycastHit hit;
 		if (triggered) {
 			if (Physics.Linecast (transform.position, playerTransform.position, out hit)) { //&& hit.transform.tag == "Wall"
-				Debug.Log ("playerInLOS Raycast hit: " + hit.transform.tag);
 
 
 				//if player is not in line of sight
@@ -109,7 +103,6 @@ public class spoder : MonoBehaviour {
 					for (int i = 0; i < gos.Length; i++) {
 						if (Physics.Linecast (transform.position, gos [i].transform.position, out hit)) { //&& hit.transform.tag == "Wall"
 							if (hit.transform.tag == "WayPoint") {
-								Debug.Log ("Yes hit a way point so prusuing that");
 								targetTransform = gos [i].transform;
 								target = gos [i];
 								triggered = false;

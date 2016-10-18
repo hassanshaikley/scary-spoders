@@ -9,20 +9,23 @@ public class powerGUI : MonoBehaviour {
 	
 	void OnGUI () {
 		// Make a background box
+//		GUI.DrawTexture(new Rect(5, 5, 25, 25), powerTexture, ScaleMode.ScaleToFit, true);
+
 		if (flashlight.power >= 80) {
-			GUI.Box (new Rect (2, 2, 25, 90), powerTexture);
+			GUI.DrawTexture(new Rect(5, 0, 25, 25), powerTexture, ScaleMode.ScaleToFit, true);
+
 		}
 		if (flashlight.power >= 60) {
-			GUI.Box (new Rect (2, 17, 25, 90), powerTexture);
+			GUI.DrawTexture(new Rect(5, 15, 25, 25), powerTexture, ScaleMode.ScaleToFit, true);
 		}
 		if (flashlight.power >= 40) {
-			GUI.Box (new Rect (2, 32, 25, 90), powerTexture);
+			GUI.DrawTexture(new Rect(5, 30, 25, 25), powerTexture, ScaleMode.ScaleToFit, true);
 		}
 		if (flashlight.power >= 20) {
-			GUI.Box (new Rect (2, 47, 25, 90), powerTexture);
+			GUI.DrawTexture(new Rect(5, 45, 25, 25), powerTexture, ScaleMode.ScaleToFit, true);
 		}
 		if (flashlight.power >= 5) {
-			GUI.Box (new Rect (2, 62, 25, 90), powerTexture);
+			GUI.DrawTexture(new Rect(5, 60, 25, 25), powerTexture, ScaleMode.ScaleToFit, true);
 		}
 
 	}

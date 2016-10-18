@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+//using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour {
+
+	public Canvas canvas;
+	public Light flashlight;
 
 	// Use this for initialization
 	void Start () {
@@ -11,6 +15,7 @@ public class PlayerScript : MonoBehaviour {
 
 	float timeLeft = 120.0f;
 
+
 	void Update()
 	{
 		timeLeft -= Time.deltaTime;
@@ -19,6 +24,8 @@ public class PlayerScript : MonoBehaviour {
 			Debug.Log ("Try");
 			Time.timeScale = 0;
 			RenderSettings.ambientIntensity = 3.2f;
+			canvas.enabled = true;
+
 		}
 	}
 	void OnCollisionEnter (Collision col)
@@ -28,7 +35,12 @@ public class PlayerScript : MonoBehaviour {
 		{
 			
 			Time.timeScale = 0;
-			RenderSettings.ambientIntensity = 0.4f;
+			RenderSettings.ambientIntensity = 0.8f;
+			RenderSettings.ambientLight = Color.red;
+			canvas.enabled = true;
+			flashlight.enabled = false;
+
+
 		}
 	}
 }

@@ -4,11 +4,11 @@ using System.Collections;
 public class flashlight : MonoBehaviour {
 
 //	public Light flashlight;
-	public static double power = 100.0;
+	public static double power;
 
 	// Use this for initialization
 	void Start () {
-
+		power =  100.0;
 	}
 	
 	// Update is called once per frame
