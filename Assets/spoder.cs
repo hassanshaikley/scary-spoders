@@ -61,10 +61,11 @@ public class spoder : MonoBehaviour {
 	{
 
 
-//		myRigidbody.rotation = Quaternion.Slerp(myTransform.rotation,
-//		Quaternion.LookRotation(targetTransform.position - myTransform.position), rotationSpeed*Time.deltaTime);
+		myRigidbody.rotation = Quaternion.Slerp(myTransform.rotation,
+		Quaternion.LookRotation(targetTransform.position - myTransform.position), rotationSpeed*Time.deltaTime);
 
 //		myRigidbody.MovePosition(myTransform.position + myTransform.forward * Time.deltaTime *moveSpeed) ;// += myTransform.forward * moveSpeed * Time.deltaTime;
+		//gooood
 //		myRigidbody.AddForce((targetTransform.position - myTransform.position) * moveSpeed * Time.smoothDeltaTime);
 		myRigidbody.velocity = (targetTransform.position - myTransform.position) * moveSpeed * Time.smoothDeltaTime;
 	}
