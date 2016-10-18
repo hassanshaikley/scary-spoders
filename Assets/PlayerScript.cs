@@ -11,8 +11,13 @@ public class PlayerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		RenderSettings.ambientIntensity = 0.0f;
+//		RenderSettings.ambientIntensity = 0.0f;
 
+		Color color = new Color();
+		ColorUtility.TryParseHtmlString ("17181C", out color);
+
+		RenderSettings.ambientSkyColor = Color.black;
+		DynamicGI.UpdateEnvironment();
 	}
 
 	float timeLeft = 120.0f;
