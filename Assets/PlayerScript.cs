@@ -4,10 +4,16 @@ using System.Collections;
 //using UnityEngine;
 //using System.Collections;
 //using UnityEngine.UI;
+
+//using UnityStandardAssets.Characters.FirstPerson;
+using UnityStandardAssets.Characters.FirstPerson;
+
+
 public class PlayerScript : MonoBehaviour {
 
 	public Canvas canvas;
 	public Light flashlight;
+	public FirstPersonController FPSC;
 
 	// Use this for initialization
 	void Start () {
@@ -33,15 +39,20 @@ public class PlayerScript : MonoBehaviour {
 			Time.timeScale = 0;
 			RenderSettings.ambientIntensity = 3.2f;
 			RenderSettings.ambientLight = Color.blue;
-			canvas.enabled = true;
+
+//			GameObject.Find ("First Person Controller").GetComponent ("MouseLook").enabled = false;
+//			MouseLook StopLook = GameObject.Find("First Person Controller").GetComponent("MouseLook");
+////			StopLook.UpdateCursorLock =
+////			GetComponent<FirstPersonController>().SendMessage("ToggleInputCursor", true);
+////			Cursor.visible = true;
+//			StopLook.enabled = false;
+
+
 
 		}
-//		int minutes = timeLeft / 60; //Divide the guiTime by sixty to get the minutes.
-//		int seconds = timeLeft % 60;//Use the euclidean division for the seconds.
-
-//		timerLabel.text = string.Format ("{0:00} : {1:00}", minutes, seconds);
 
 	}
+
 	void OnGUI() {
 
 		GUI.Box(new Rect(Screen.width - 50, 10, 50, 20), "" + timeLeft.ToString("0"));
@@ -58,7 +69,9 @@ public class PlayerScript : MonoBehaviour {
 			RenderSettings.ambientLight = Color.red;
 			canvas.enabled = true;
 			flashlight.enabled = false;
+//			GameObject.Find("FPSController").GetComponent<FirstPersonController>().enabled = false;
 
+//			FPSController.GetComponent<FirstPersonController>().enabled = false;
 
 		}
 	}

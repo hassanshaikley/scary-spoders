@@ -66,8 +66,23 @@ public class spoder : MonoBehaviour {
 
 //		myRigidbody.MovePosition(myTransform.position + myTransform.forward * Time.deltaTime *moveSpeed) ;// += myTransform.forward * moveSpeed * Time.deltaTime;
 		//gooood
-		myRigidbody.AddForce((targetTransform.position - myTransform.position) * moveSpeed * Time.smoothDeltaTime);
+//		myRigidbody.AddForce(myTransform.forward * moveSpeed);
 //		myRigidbody.velocity = (targetTransform.position - myTransform.position) * moveSpeed * Time.smoothDeltaTime;
+		myRigidbody.velocity = (myTransform.forward * moveSpeed);
+
+		if (Random.Range (0, 120) < 1) {
+			Debug.Log ("Going up");
+			myRigidbody.AddForce (myTransform.up  * 65);
+		}
+		if (Random.Range (0, 90) < 1) {
+			Debug.Log ("Going left");
+			myRigidbody.AddForce (myTransform.right  * 55);
+		}
+		if (Random.Range (0, 90) < 1) {
+			Debug.Log ("Going rigt");
+			myRigidbody.AddForce (myTransform.right  * -55);
+		}
+
 	}
 
 	// if player in LOS aggros player
