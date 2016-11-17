@@ -21,12 +21,13 @@ public class spoder : MonoBehaviour {
 	void Awake()
 	{
 		triggered = false;
+		aggro.mute = true;
 		myTransform = transform; 
 		myRigidbody = GetComponent<Rigidbody>();
 		targetTransform = target.transform;
 
 		InvokeRepeating("checkForPlayer", 2.0f, 1.0f);
-		InvokeRepeating("playerInLOS", 2.0f, 3.0f);
+		InvokeRepeating("playerInLOS", 2.0f, 5.0f);
 
 
 	}
@@ -60,28 +61,36 @@ public class spoder : MonoBehaviour {
 	private void FixedUpdate()
 	{
 
-
+		
 		myRigidbody.rotation = Quaternion.Slerp(myTransform.rotation,
 		Quaternion.LookRotation(targetTransform.position - myTransform.position), rotationSpeed*Time.deltaTime);
+//		myRigidbody.velocity = (myTransform.forward * moveSpeed);
+
+		float step = moveSpeed * Time.deltaTime;
+		transform.position = Vector3.MoveTowards(transform.position, targetTransform.position, step);
 
 //		myRigidbody.MovePosition(myTransform.position + myTransform.forward * Time.deltaTime *moveSpeed) ;// += myTransform.forward * moveSpeed * Time.deltaTime;
 		//gooood
 //		myRigidbody.AddForce(myTransform.forward * moveSpeed);
 //		myRigidbody.velocity = (targetTransform.position - myTransform.position) * moveSpeed * Time.smoothDeltaTime;
-		myRigidbody.velocity = (myTransform.forward * moveSpeed);
 
-		if (Random.Range (0, 120) < 1) {
-			Debug.Log ("Going up");
-			myRigidbody.AddForce (myTransform.up  * 65);
+		if (triggered) {
+			if (Random.Range (0, 120) < 1) {
+				Debug.Log ("Going up");
+				myRigidbody.AddForce (myTransform.up * 70);
+				myRigidbody.AddForce (myTransform.forward * 40);
+
+			}
+//			if (Random.Range (0, 90) < 1) {
+//				Debug.Log ("Going left");
+//				myRigidbody.AddForce (myTransform.right * 20);
+//			}
+//			if (Random.Range (0, 90) < 1) {
+//				Debug.Log ("Going rigt");
+//				myRigidbody.AddForce (myTransform.right * -20);
+//			}
 		}
-		if (Random.Range (0, 90) < 1) {
-			Debug.Log ("Going left");
-			myRigidbody.AddForce (myTransform.right  * 55);
-		}
-		if (Random.Range (0, 90) < 1) {
-			Debug.Log ("Going rigt");
-			myRigidbody.AddForce (myTransform.right  * -55);
-		}
+
 
 	}
 
@@ -91,7 +100,7 @@ public class spoder : MonoBehaviour {
 //		if (Mathf.Abs (playerTransform.position.x - transform.position.x) < 10 && Mathf.Abs (playerTransform.position.y - transform.position.y) < 10) {
 			if (Physics.Linecast (transform.position, playerTransform.position, out hit)) { //&& hit.transform.tag == "Wall"
 				if (hit.transform.tag == "Player") {
-//					aggro.Play ();
+					aggro.mute = false;
 
 					targetTransform = playerTransform;
 					triggered = true;
@@ -122,6 +131,8 @@ public class spoder : MonoBehaviour {
 								targetTransform = gos [i].transform;
 								target = gos [i];
 								triggered = false;
+								aggro.mute = true;
+
 								return;
 							}
 						}

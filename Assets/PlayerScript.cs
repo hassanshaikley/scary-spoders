@@ -26,7 +26,7 @@ public class PlayerScript : MonoBehaviour {
 		DynamicGI.UpdateEnvironment();
 	}
 
-	float timeLeft = 120.0f;
+	float timeLeft = 60.0f;
 
 
 
