@@ -30,8 +30,8 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-# Windows/
-# Mac/
-# Web/
+Windows/
+Mac/
+Web/
 
 .DS_Store
