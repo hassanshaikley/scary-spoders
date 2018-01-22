@@ -117,11 +117,9 @@ public class spoder : MonoBehaviour {
 		if (triggered) {
 			if (Physics.Linecast (transform.position, playerTransform.position, out hit)) { //&& hit.transform.tag == "Wall"
 
-
 				//if player is not in line of sight
 				if (hit.transform.tag != "Player") {
-				
-				
+
 					GameObject[] gos;
 					gos = GameObject.FindGameObjectsWithTag("WayPoint");
 
