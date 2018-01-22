@@ -81,6 +81,8 @@ public class spoder : MonoBehaviour {
 //		myRigidbody.velocity = (targetTransform.position - myTransform.position) * moveSpeed * Time.smoothDeltaTime;
 
 		if (triggered) {
+
+		
 			if (Random.Range (0, 120) < 1) {
 				Debug.Log ("Going up");
 				myRigidbody.AddForce (myTransform.up * 70);
@@ -106,10 +108,17 @@ public class spoder : MonoBehaviour {
 //		if (Mathf.Abs (playerTransform.position.x - transform.position.x) < 10 && Mathf.Abs (playerTransform.position.y - transform.position.y) < 10) {
 			if (Physics.Linecast (transform.position, playerTransform.position, out hit)) { //&& hit.transform.tag == "Wall"
 				if (hit.transform.tag == "Player") {
+				if (!triggered) {
+					myRigidbody.AddForce (myTransform.up * 50);
+					myRigidbody.AddForce (myTransform.forward * 70);	
+				}
+
 					aggro.mute = false;
 
 					targetTransform = playerTransform;
 					triggered = true;
+
+
 				}
 			}
 //		}

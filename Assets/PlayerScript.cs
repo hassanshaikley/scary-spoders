@@ -59,7 +59,7 @@ public class PlayerScript : MonoBehaviour {
 
 		}
 
-		if (gameOver) {
+		if (gameOver && timeLeft <= 0) {
 			gameWon.SetActive(true);
 
 		}
