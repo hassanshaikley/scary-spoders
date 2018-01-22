@@ -56,7 +56,7 @@ public class PlayerScript : MonoBehaviour {
 
 		}
 
-		if (gameOver && Input.GetKeyDown ("escape")) {
+		if (gameOver && Input.GetKeyDown ("enter")) {
 			SceneManager.LoadScene("GameScene");
 			Time.timeScale = 1;
 
