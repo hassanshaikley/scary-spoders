@@ -57,13 +57,19 @@ public class spoder : MonoBehaviour {
 //			RenderSettings.ambientIntensity = 0.4f;
 //		}
 //	}
-//
+//	
+	private void rotateTowardsTarget() {
+//		myRigidbody.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(targetTransform.position - myTransform.position), rotationSpeed*Time.deltaTime);
+//		myRigidbody.MovePosition(targetTransform.position + targetTransform.position * rotationSpeed * Time.fixedDeltaTime);
+		transform.LookAt(targetTransform);
+
+
+	}
 	private void FixedUpdate()
 	{
 
+		rotateTowardsTarget ();
 		
-		myRigidbody.rotation = Quaternion.Slerp(myTransform.rotation,
-		Quaternion.LookRotation(targetTransform.position - myTransform.position), rotationSpeed*Time.deltaTime);
 //		myRigidbody.velocity = (myTransform.forward * moveSpeed);
 
 		float step = moveSpeed * Time.deltaTime;
