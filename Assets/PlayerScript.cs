@@ -56,7 +56,7 @@ public class PlayerScript : MonoBehaviour {
 
 		}
 
-		if (gameOver && Input.GetKeyDown ("enter")) {
+		if (gameOver && Input.GetKeyDown ("s")) {
 			SceneManager.LoadScene("GameScene");
 			Time.timeScale = 1;
 
@@ -66,7 +66,6 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void OnGUI() {
-
 		GUI.Box(new Rect(Screen.width - 50, 10, 50, 20), "" + timeLeft.ToString("0"));
 
 	}
