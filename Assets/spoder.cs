@@ -26,7 +26,7 @@ public class spoder : MonoBehaviour {
 		myRigidbody = GetComponent<Rigidbody>();
 		targetTransform = target.transform;
 
-		InvokeRepeating("checkForPlayer", 2.0f, 1.0f);
+		InvokeRepeating("checkForPlayer", 2.0f, 0.3f);
 		InvokeRepeating("playerInLOS", 2.0f, 5.0f);
 
 
