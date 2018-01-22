@@ -4,6 +4,7 @@ using System.Collections;
 //using UnityEngine;
 //using System.Collections;
 //using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 //using UnityStandardAssets.Characters.FirstPerson;
 using UnityStandardAssets.Characters.FirstPerson;
@@ -15,6 +16,8 @@ public class PlayerScript : MonoBehaviour {
 	public Light flashlight;
 	public FirstPersonController FPSC;
 
+	public bool gameOver;
+
 	// Use this for initialization
 	void Start () {
 //		RenderSettings.ambientIntensity = 0.0f;
@@ -24,6 +27,8 @@ public class PlayerScript : MonoBehaviour {
 
 		RenderSettings.ambientSkyColor = Color.black;
 		DynamicGI.UpdateEnvironment();
+		gameOver = false;
+
 	}
 
 	float timeLeft = 60.0f;
@@ -46,10 +51,17 @@ public class PlayerScript : MonoBehaviour {
 ////			GetComponent<FirstPersonController>().SendMessage("ToggleInputCursor", true);
 ////			Cursor.visible = true;
 //			StopLook.enabled = false;
-
+			gameOver = true;
 
 
 		}
+
+		if (gameOver && Input.GetKeyDown ("escape")) {
+			SceneManager.LoadScene("GameScene");
+			Time.timeScale = 1;
+
+		}
+		
 
 	}
 
@@ -73,6 +85,7 @@ public class PlayerScript : MonoBehaviour {
 
 //			FPSController.GetComponent<FirstPersonController>().enabled = false;
 
+			gameOver = true;
 		}
 	}
 }
