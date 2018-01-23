@@ -13,7 +13,7 @@ public class menu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown("s")) {
+		if (Input.GetKeyDown("q")) {
 			Debug.Log ("enter hit");
 
 			SceneManager.LoadScene("GameScene");
