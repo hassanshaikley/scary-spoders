@@ -31,8 +31,12 @@ public class PlayerScript : MonoBehaviour {
 		ColorUtility.TryParseHtmlString ("17181C", out color);
 
 		RenderSettings.ambientSkyColor = Color.black;
+		RenderSettings.skybox.color = Color.black;
+
 		DynamicGI.UpdateEnvironment();
 		gameOver = false;
+
+
 
 	}
 
