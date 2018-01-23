@@ -68,9 +68,10 @@ public class spoder : MonoBehaviour {
 
 	}
 
-	private void leap() {
-		myRigidbody.AddForce (myTransform.up * 70);
-		myRigidbody.AddForce (myTransform.forward * 40);
+	private void leap(bool aggro) {
+		int aggroBonus = aggro ? 30 : 0;
+		myRigidbody.AddForce (myTransform.up * Random.Range(60, 80));
+		myRigidbody.AddForce (myTransform.forward * (aggroBonus + Random.Range(20,50)));
 		leapAudio.Play ();
 	}
 	private void FixedUpdate()
@@ -97,7 +98,7 @@ public class spoder : MonoBehaviour {
 		
 			if (Random.Range (0, 60) < 1) {
 				Debug.Log ("Going up");
-				leap ();
+				leap (false);
 
 			}
 //			if (Random.Range (0, 90) < 1) {
@@ -122,7 +123,7 @@ public class spoder : MonoBehaviour {
 			if (Physics.Linecast (transform.position, playerTransform.position, out hit)) { //&& hit.transform.tag == "Wall"
 				if (hit.transform.tag == "Player") {
 					if (!triggered) {
-						leap ();
+						leap (true);
 					}
 					
 					aggro.mute = false;
