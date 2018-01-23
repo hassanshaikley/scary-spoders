@@ -12,14 +12,14 @@ using UnityStandardAssets.Characters.FirstPerson;
 
 public class PlayerScript : MonoBehaviour {
 
-	public Canvas canvas;
 	public Light flashlight;
 	public FirstPersonController FPSC;
 
 	public GameObject gameWon; 
+	public GameObject gameOverCanvas; 
+
 
 	public AudioSource gameOverAudio;
-
 
 	public static bool gameOver;
 
@@ -49,10 +49,7 @@ public class PlayerScript : MonoBehaviour {
 			RenderSettings.ambientIntensity = 3.2f;
 			RenderSettings.ambientLight = Color.blue;
 
-
 			gameOver = true;
-
-
 
 		}
 
@@ -66,8 +63,6 @@ public class PlayerScript : MonoBehaviour {
 			gameWon.SetActive(true);
 
 		}
-
-		
 
 	}
 
@@ -87,10 +82,9 @@ public class PlayerScript : MonoBehaviour {
 			Time.timeScale = 0;
 			RenderSettings.ambientIntensity = 0.8f;
 			RenderSettings.ambientLight = Color.red;
-			canvas.enabled = true;
 			flashlight.enabled = false;
 //				.transform.FindChild ("ChildName").gameObject
-
+			gameOverCanvas.SetActive(true);
 			gameOverAudio.Play ();
 			gameOver = true;
 		}

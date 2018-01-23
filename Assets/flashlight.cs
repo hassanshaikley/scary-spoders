@@ -15,6 +15,10 @@ public class flashlight : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (PlayerScript.gameOver)
+			return;
+		
 		if (GetComponent<Light> ().enabled == true) {
 			power = power - .5;
 		} else {
@@ -31,7 +35,7 @@ public class flashlight : MonoBehaviour {
 				GetComponent<Light> ().enabled = false; 
 				lightAudio.Play ();
 
-			} else if ( power > 0 && ! PlayerScript.gameOver){
+			} else if ( power > 0){
 				GetComponent<Light> ().enabled = true; 
 				lightAudio.Play ();
 
