@@ -9,6 +9,8 @@ public class spoder : MonoBehaviour {
 
 	public AudioSource aggro;
 	public AudioSource leapAudio;
+	public AudioSource walkAudio;
+
 
 
 	bool triggered;
@@ -17,6 +19,8 @@ public class spoder : MonoBehaviour {
 	public float moveSpeed;
 	public float rotationSpeed;
 
+	private bool isgrounded;
+
 	Transform myTransform; //current transform data of this enemy
 	Rigidbody myRigidbody; //current rigidbody
 
@@ -24,6 +28,7 @@ public class spoder : MonoBehaviour {
 	{
 		triggered = false;
 		aggro.mute = true;
+		walkAudio.Play ();
 		myTransform = transform; 
 		myRigidbody = GetComponent<Rigidbody>();
 		targetTransform = target.transform;
@@ -60,6 +65,30 @@ public class spoder : MonoBehaviour {
 //		}
 //	}
 //	
+
+	public void OnCollisionEnter(Collision theCollision){
+		Debug.Log("Hit  " + theCollision.gameObject.tag);
+
+		if(theCollision.gameObject.tag == "Floor")
+		{
+			isgrounded = true;
+			walkAudio.mute = false;
+		}
+	}
+
+	//consider when character is jumping .. it will exit collision.
+	public void OnCollisionExit(Collision theCollision){
+		Debug.Log("Left  " + theCollision.gameObject.tag);
+
+		if(theCollision.gameObject.tag == "Floor")
+		{
+			isgrounded = false;
+			walkAudio.mute = true;
+
+		}
+	}
+
+
 	private void rotateTowardsTarget() {
 //		myRigidbody.rotation = Quaternion.Slerp(myTransform.rotation, Quaternion.LookRotation(targetTransform.position - myTransform.position), rotationSpeed*Time.deltaTime);
 //		myRigidbody.MovePosition(targetTransform.position + targetTransform.position * rotationSpeed * Time.fixedDeltaTime);
@@ -69,6 +98,8 @@ public class spoder : MonoBehaviour {
 	}
 
 	private void leap(bool aggro) {
+		if (!isgrounded)
+			return;
 		int aggroBonus = aggro ? 30 : 0;
 		myRigidbody.AddForce (myTransform.up * Random.Range(60, 80));
 		myRigidbody.AddForce (myTransform.forward * (aggroBonus + Random.Range(20,50)));
@@ -76,6 +107,7 @@ public class spoder : MonoBehaviour {
 	}
 	private void FixedUpdate()
 	{
+		
 			
 		if (PlayerScript.gameOver) {
 			aggro.mute = true;
