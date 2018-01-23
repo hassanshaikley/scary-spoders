@@ -3,7 +3,7 @@ using System.Collections;
 //using UnityEngine.SceneManagement;
 //using UnityEngine;
 //using System.Collections;
-//using UnityEngine.UI;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 //using UnityStandardAssets.Characters.FirstPerson;
@@ -78,12 +78,16 @@ public class PlayerScript : MonoBehaviour {
 		Debug.Log ("Hit main player");
 		if(col.gameObject.tag == "Enemy")
 		{
+
+			float survivedFor = 60.0f - timeLeft;
+
+
 			
 			Time.timeScale = 0;
 			RenderSettings.ambientIntensity = 0.8f;
 			RenderSettings.ambientLight = Color.red;
 			flashlight.enabled = false;
-//				.transform.FindChild ("ChildName").gameObject
+			gameOverCanvas.transform.Find ("Text").gameObject.GetComponent<Text>().text = "You survived for " + Mathf.RoundToInt(survivedFor) + " seconds. Congratulations. Press q to play again"; 
 			gameOverCanvas.SetActive(true);
 			gameOverAudio.Play ();
 			gameOver = true;
