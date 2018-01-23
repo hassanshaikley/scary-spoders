@@ -75,6 +75,10 @@ public class spoder : MonoBehaviour {
 	}
 	private void FixedUpdate()
 	{
+			
+		if (PlayerScript.gameOver) {
+			aggro.mute = true;
+		}
 
 		rotateTowardsTarget ();
 		
@@ -111,6 +115,8 @@ public class spoder : MonoBehaviour {
 
 	// if player in LOS aggros player
 	void checkForPlayer(){
+		if (PlayerScript.gameOver)
+			return;
 		RaycastHit hit;
 //		if (Mathf.Abs (playerTransform.position.x - transform.position.x) < 10 && Mathf.Abs (playerTransform.position.y - transform.position.y) < 10) {
 			if (Physics.Linecast (transform.position, playerTransform.position, out hit)) { //&& hit.transform.tag == "Wall"
@@ -118,7 +124,7 @@ public class spoder : MonoBehaviour {
 					if (!triggered) {
 						leap ();
 					}
-
+					
 					aggro.mute = false;
 
 					targetTransform = playerTransform;

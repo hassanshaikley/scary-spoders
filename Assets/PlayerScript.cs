@@ -45,7 +45,7 @@ public class PlayerScript : MonoBehaviour {
 		timeLeft -= Time.deltaTime;
 		if(timeLeft < 0)
 		{
-			Time.timeScale = 0;
+			Time.timeScale = 0.01f;
 			RenderSettings.ambientIntensity = 3.2f;
 			RenderSettings.ambientLight = Color.blue;
 
@@ -83,11 +83,11 @@ public class PlayerScript : MonoBehaviour {
 
 
 			
-			Time.timeScale = 0;
+			Time.timeScale = 0.01f;
 			RenderSettings.ambientIntensity = 0.8f;
 			RenderSettings.ambientLight = Color.red;
 			flashlight.enabled = false;
-			gameOverCanvas.transform.Find ("Text").gameObject.GetComponent<Text>().text = "You survived for " + Mathf.RoundToInt(survivedFor) + " seconds. Congratulations. Press q to play again"; 
+			gameOverCanvas.transform.Find ("Text").gameObject.GetComponent<Text>().text = "You survived for " + Mathf.RoundToInt(survivedFor) + " seconds. Congratulations. Press q to try again."; 
 			gameOverCanvas.SetActive(true);
 			gameOverAudio.Play ();
 			gameOver = true;

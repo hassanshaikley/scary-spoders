@@ -35,8 +35,7 @@ namespace UnityStandardAssets.Utility
 			Debug.Log (col.gameObject.tag);
 			if(col.gameObject.tag == "Player")
 			{
-//				Destroy(col.gameObject);
-				Time.timeScale = 0;
+				Time.timeScale = 0.01f;
 				RenderSettings.ambientIntensity = 0.4f;
 			}
 		}
