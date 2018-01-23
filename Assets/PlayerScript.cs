@@ -18,6 +18,9 @@ public class PlayerScript : MonoBehaviour {
 
 	public GameObject gameWon; 
 
+	public AudioSource gameOverAudio;
+
+
 	public bool gameOver;
 
 	// Use this for initialization
@@ -87,6 +90,7 @@ public class PlayerScript : MonoBehaviour {
 
 //			FPSController.GetComponent<FirstPersonController>().enabled = false;
 
+			gameOverAudio.Play ();
 			gameOver = true;
 		}
 	}
