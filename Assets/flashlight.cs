@@ -31,7 +31,7 @@ public class flashlight : MonoBehaviour {
 				GetComponent<Light> ().enabled = false; 
 				lightAudio.Play ();
 
-			} else if ( power > 0){
+			} else if ( power > 0 && ! PlayerScript.gameOver){
 				GetComponent<Light> ().enabled = true; 
 				lightAudio.Play ();
 

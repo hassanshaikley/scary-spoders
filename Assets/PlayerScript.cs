@@ -21,7 +21,7 @@ public class PlayerScript : MonoBehaviour {
 	public AudioSource gameOverAudio;
 
 
-	public bool gameOver;
+	public static bool gameOver;
 
 	// Use this for initialization
 	void Start () {
@@ -89,9 +89,7 @@ public class PlayerScript : MonoBehaviour {
 			RenderSettings.ambientLight = Color.red;
 			canvas.enabled = true;
 			flashlight.enabled = false;
-//			GameObject.Find("FPSController").GetComponent<FirstPersonController>().enabled = false;
-
-//			FPSController.GetComponent<FirstPersonController>().enabled = false;
+//				.transform.FindChild ("ChildName").gameObject
 
 			gameOverAudio.Play ();
 			gameOver = true;
