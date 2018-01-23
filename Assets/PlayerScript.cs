@@ -16,6 +16,8 @@ public class PlayerScript : MonoBehaviour {
 	public Light flashlight;
 	public FirstPersonController FPSC;
 
+	public GameObject gameWon; 
+
 	public bool gameOver;
 
 	// Use this for initialization
@@ -40,33 +42,33 @@ public class PlayerScript : MonoBehaviour {
 		timeLeft -= Time.deltaTime;
 		if(timeLeft < 0)
 		{
-			Debug.Log ("Try");
 			Time.timeScale = 0;
 			RenderSettings.ambientIntensity = 3.2f;
 			RenderSettings.ambientLight = Color.blue;
 
-//			GameObject.Find ("First Person Controller").GetComponent ("MouseLook").enabled = false;
-//			MouseLook StopLook = GameObject.Find("First Person Controller").GetComponent("MouseLook");
-////			StopLook.UpdateCursorLock =
-////			GetComponent<FirstPersonController>().SendMessage("ToggleInputCursor", true);
-////			Cursor.visible = true;
-//			StopLook.enabled = false;
+
 			gameOver = true;
+
 
 
 		}
 
-		if (gameOver && Input.GetKeyDown ("enter")) {
+		if (gameOver && Input.GetKeyDown ("s")) {
 			SceneManager.LoadScene("GameScene");
 			Time.timeScale = 1;
 
 		}
+
+		if (gameOver && timeLeft <= 0) {
+			gameWon.SetActive(true);
+
+		}
+
 		
 
 	}
 
 	void OnGUI() {
-
 		GUI.Box(new Rect(Screen.width - 50, 10, 50, 20), "" + timeLeft.ToString("0"));
 
 	}

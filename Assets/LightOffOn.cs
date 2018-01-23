@@ -6,7 +6,6 @@ public class LightOffOn : MonoBehaviour {
 	public Light light;
 
 
-
 	// Use this for initialization
 	void Start () {
 		InvokeRepeating("fn", 2f, 2F);

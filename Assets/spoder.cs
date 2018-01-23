@@ -8,6 +8,8 @@ public class spoder : MonoBehaviour {
 	public Transform playerTransform;
 
 	public AudioSource aggro;
+	public AudioSource leapAudio;
+
 
 	bool triggered;
 	Transform targetTransform;
@@ -65,6 +67,12 @@ public class spoder : MonoBehaviour {
 
 
 	}
+
+	private void leap() {
+		myRigidbody.AddForce (myTransform.up * 70);
+		myRigidbody.AddForce (myTransform.forward * 40);
+		leapAudio.Play ();
+	}
 	private void FixedUpdate()
 	{
 
@@ -81,10 +89,11 @@ public class spoder : MonoBehaviour {
 //		myRigidbody.velocity = (targetTransform.position - myTransform.position) * moveSpeed * Time.smoothDeltaTime;
 
 		if (triggered) {
-			if (Random.Range (0, 120) < 1) {
+
+		
+			if (Random.Range (0, 60) < 1) {
 				Debug.Log ("Going up");
-				myRigidbody.AddForce (myTransform.up * 70);
-				myRigidbody.AddForce (myTransform.forward * 40);
+				leap ();
 
 			}
 //			if (Random.Range (0, 90) < 1) {
@@ -106,10 +115,16 @@ public class spoder : MonoBehaviour {
 //		if (Mathf.Abs (playerTransform.position.x - transform.position.x) < 10 && Mathf.Abs (playerTransform.position.y - transform.position.y) < 10) {
 			if (Physics.Linecast (transform.position, playerTransform.position, out hit)) { //&& hit.transform.tag == "Wall"
 				if (hit.transform.tag == "Player") {
+					if (!triggered) {
+						leap ();
+					}
+
 					aggro.mute = false;
 
 					targetTransform = playerTransform;
 					triggered = true;
+
+
 				}
 			}
 //		}

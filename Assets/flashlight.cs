@@ -5,6 +5,8 @@ public class flashlight : MonoBehaviour {
 
 //	public Light flashlight;
 	public static double power;
+	public AudioSource lightAudio;
+
 
 	// Use this for initialization
 	void Start () {
@@ -22,12 +24,17 @@ public class flashlight : MonoBehaviour {
 		}
 		if (power <= 0) {
 			GetComponent<Light> ().enabled = false; 
+			lightAudio.Play ();
 		}
 		if (Input.GetMouseButtonDown (0)) {
 			if (GetComponent<Light> ().enabled == true) {
 				GetComponent<Light> ().enabled = false; 
+				lightAudio.Play ();
+
 			} else if ( power > 0){
 				GetComponent<Light> ().enabled = true; 
+				lightAudio.Play ();
+
 			}
 		}
 	}

@@ -2,12 +2,15 @@ A video game based off of a dream I had as a child.
 
 # Scary Spoders
 
-Survive for two minutes in a maze swarming with spiders.
+Survive for one minute in a maze swarming with spiders.
 
 But really, you won't survive.
 
 No, really.
 
-btw: It's a Unity game.
+Open it in Unity and you're good to go. Or download a release, ofcourse.
 
-Open it in Unity and you're good to go.
+## Contributing
+
+Feel free to fork and publish as you wish just give me credit. If you want to submit a PR create an issue before you write any code so we can sync up first..or just fork your version.
+
