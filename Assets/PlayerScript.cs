@@ -72,7 +72,10 @@ public class PlayerScript : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		GUI.Box(new Rect(Screen.width - 50, 10, 50, 20), "" + timeLeft.ToString("0"));
+		GUIStyle style1 = new GUIStyle();
+		style1.normal.textColor = Color.gray;
+		
+		GUI.Box(new Rect(Screen.width - 50, 10, 50, 20), "" + timeLeft.ToString("0"), style1);
 
 	}
 	void OnCollisionEnter (Collision col)
