@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
 public class spoder : MonoBehaviour {
 
 	//way points or the player
@@ -54,18 +54,7 @@ public class spoder : MonoBehaviour {
 			}
 		};
 	}
-
-//	void OnCollisionEnter (Collision col)
-//	{			
-//		if(col.gameObject.tag == "Player")
-//		{
-//			//				Destroy(col.gameObject);
-//			Time.timeScale = 0;
-//			RenderSettings.ambientIntensity = 0.4f;
-//		}
-//	}
-//	
-
+		
 	public void OnCollisionEnter(Collision theCollision){
 		Debug.Log("Hit  " + theCollision.gameObject.tag);
 
@@ -181,20 +170,26 @@ public class spoder : MonoBehaviour {
 				if (hit.transform.tag != "Player") {
 
 					GameObject[] gos;
+					List<GameObject> hitGos = new List<GameObject>();
+
+
 					gos = GameObject.FindGameObjectsWithTag("WayPoint");
+					triggered = false;
+					aggro.mute = true;
 
 					for (int i = 0; i < gos.Length; i++) {
-						if (Physics.Linecast (transform.position, gos [i].transform.position, out hit)) { //&& hit.transform.tag == "Wall"
+						if (Physics.Linecast (transform.position, gos [i].transform.position, out hit)) {
 							if (hit.transform.tag == "WayPoint") {
-								targetTransform = gos [i].transform;
-								target = gos [i];
-								triggered = false;
-								aggro.mute = true;
+								hitGos.Add (gos [i]);
 
-								return;
 							}
 						}
 					}
+
+					int index = Random.Range (0, hitGos.Count - 1);
+
+					targetTransform = gos [index].transform;
+					target = gos [index];
 				
 				}
 			}
