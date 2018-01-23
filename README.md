@@ -2,6 +2,8 @@ A video game based off of a dream I had as a child.
 
 # Scary Spoders
 
+![alt text](screenshot.png)
+
 Survive for one minute in a maze swarming with spiders.
 
 But really, you won't survive.
